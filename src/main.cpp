@@ -8,6 +8,7 @@
 #define TFT_CS   4
 #define TFT_DC   3
 #define TFT_RST  8
+Adafruit_ST7735 tft = Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RST);
 
 // --- Pines DS1302 ---
 #define DS1302_IO   7
@@ -20,7 +21,14 @@ RtcDS1302<ThreeWire> rtc(myWire);
 #define FAN_PWM_PIN 9
 #define FAN_TACH_PIN 2
 
-Adafruit_ST7735 tft = Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RST);
+// --- relay---//
+
+#define RELE_PIN 10
+
+bool releEstado = false;
+unsigned long releStart = 0;
+const unsigned long releDuracion = 60000; // milisegundos (60 segundos)
+
 
 // Variables ventilador
 volatile unsigned long pulseCount = 0;
@@ -30,14 +38,23 @@ int rpm = 0;
 float duty = 20;
 const float pulsesPerRev = 2.0;
 
+// Control de actualización
 String ultimaHora = "";
-int posX = 10, posY = 20;
+int ultimoRPM = -1;
+
+// Colores
+#define COLOR_HORA    ST7735_GREEN
+#define COLOR_RPM     ST7735_YELLOW
+#define FONDO         ST7735_BLACK // ------> FONDO DE COLOR DEL TEXTO
+
+// Posiciones en pantalla
+int horaX = 0, horaY = 0;
+int rpmX  = 0, rpmY  = 10;
 
 // ---- Contador de pulsos ----
 void countPulse() {
   pulseCount++;
 }
-
 
 // ---- PWM a 25 kHz ----
 void setupPWM25kHz() {
@@ -73,8 +90,7 @@ void setup() {
   // TFT
   tft.initR(INITR_18BLACKTAB);
   tft.setRotation(0);
-  tft.fillScreen(ST7735_BLACK);
-  tft.setTextColor(ST7735_WHITE);
+  tft.fillScreen(FONDO);
   tft.setTextSize(1);
 
   // Ventilador
@@ -82,41 +98,67 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(FAN_TACH_PIN), countPulse, FALLING);
 
   lastMillis = millis();
+ // Relay
+ pinMode(RELE_PIN, OUTPUT);
+ digitalWrite(RELE_PIN, LOW);
 }
 
 void loop() {
-  // Mostrar hora
+  // Mostrar hora en verde
   RtcDateTime now = rtc.GetDateTime();
   char buffer[9];
   snprintf(buffer, sizeof(buffer), "%02u:%02u:%02u", now.Hour(), now.Minute(), now.Second());
   String horaString = String(buffer);
 
   if (horaString != ultimaHora) {
-    tft.fillRect(posX, posY - 0, 30, 10, ST7735_BLACK);
-    tft.setCursor(posX, posY);
+    tft.fillRect(horaX, horaY, 60, 10, FONDO);
+    tft.setCursor(horaX, horaY);
+    tft.setTextColor(COLOR_HORA, FONDO);
     tft.print(horaString);
     ultimaHora = horaString;
   }
+ /////////////////////////////DURACION RELAY/////////////////////////
+  if ((now.Hour() == 5 && now.Minute() == 0 && now.Second() == 0) ||
+      (now.Hour() == 12 && now.Minute() == 0 && now.Second() == 0) ||
+      (now.Hour() == 18 && now.Minute() == 0 && now.Second() == 0)) {
+    releStart = millis();
+    releEstado = true;
+  }
 
-  // Calcular y mostrar RPM cada 1 segundo
+ // Apagar después del tiempo definido
+  if (releEstado && millis() - releStart > releDuracion) {
+    releEstado = false;
+  }
+  ///////////////////////////////////////////////////////////////////
+  tft.setCursor(0, 30);
+  tft.setTextColor(ST7735_WHITE, FONDO);
+  tft.print("RELAY: ");
+  tft.setTextColor(releEstado ? ST7735_GREEN : ST7735_RED, FONDO);
+  tft.print(releEstado ? "ENCENDIDO " : "APAGADO");
+
+  // Calcular y mostrar RPM en amarillo
   if (millis() - lastMillis >= 1000) {
     noInterrupts();
     pulses = pulseCount;
     pulseCount = 0;
     interrupts();
 
-    rpm = (pulses * 60) / pulsesPerRev; // sin decimales
+    rpm = (pulses * 60) / pulsesPerRev;
+
+    if (rpm != ultimoRPM) {
+      tft.fillRect(rpmX, rpmY, 20, 20, FONDO);
+      tft.setCursor(rpmX, rpmY);
+      tft.setTextColor(COLOR_RPM, FONDO);
+      tft.print("FAN01:");
+      tft.print(rpm);
+      tft.print("RPM");
+      ultimoRPM = rpm;
+    }
 
     Serial.print("Pulsos: ");
     Serial.print(pulses);
     Serial.print(" | RPM: ");
     Serial.println(rpm);
-
-    // Mostrar en TFT
-    tft.fillRect(0, 60, 120, 20, ST7735_BLACK); // Borrar solo área RPM
-    tft.setCursor(0, 20);
-    tft.print("RPM: ");
-    tft.print(rpm);
 
     lastMillis = millis();
   }
