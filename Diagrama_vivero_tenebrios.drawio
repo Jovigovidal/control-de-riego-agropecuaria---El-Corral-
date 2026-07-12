@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Página-1" id="koUn4hIdyBtjUtpu3TXn">
-    <mxGraphModel dx="2115" dy="705" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2887" dy="1128" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -95,6 +95,11 @@
               <mxPoint x="740" y="450" />
               <mxPoint x="740" y="450" />
             </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-57AGY_NIGQAZNsNdCAg-73" connectable="0" parent="-57AGY_NIGQAZNsNdCAg-68" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="VCC" vertex="1">
+          <mxGeometry relative="1" x="0.3278" y="-1" as="geometry">
+            <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="JcPs1KeFLbjiR-1g2Z5X-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000,#0066CC);" value="MODULO RELE&amp;nbsp;&lt;div&gt;2 CANALES - 01&lt;/div&gt;" vertex="1">
@@ -395,6 +400,18 @@
             <mxPoint x="-3" y="6" as="offset" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="-57AGY_NIGQAZNsNdCAg-71" edge="1" parent="1" source="-57AGY_NIGQAZNsNdCAg-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1.555;exitY=0.436;exitDx=0;exitDy=0;exitPerimeter=0;strokeWidth=2;" target="-57AGY_NIGQAZNsNdCAg-60">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="770" y="129" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-57AGY_NIGQAZNsNdCAg-72" connectable="0" parent="-57AGY_NIGQAZNsNdCAg-71" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="GND" vertex="1">
+          <mxGeometry relative="1" x="0.9321" y="-2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="-57AGY_NIGQAZNsNdCAg-44" parent="1" style="shape=stencil(tVZtb5swEP4t+4C0fehETF4+p0CmSl02rdL2MbLwtXhzbGZM1/XX77BBKTS4btJJCB135+defI9NlKR1SSuISCzpHqIkiwjZNCAN7L4qBnqX14YLhVp0+cOZKZ3PbBk7XQn8rjSdMu6UtdHqF/w4uJNWn+RRvEZr+yRpoaSEwnAl64HliR1hKJcGvx8cTAf/t/v6SBZOUYHmezCgB26Hiq6dIiKbk0MFRtqeH2kVGOrTNnt9sNkoWBIW6/vu8/rm/Gir4Gj59stEvCRFzdTwJOmt0nCnVSPZ0SzfXVygkDagK9VmorkseEUFyoiJb9PUVhaI00pQGyoZ1fyRMtUqEOAYsMZ0Jve0o8+YOiPWTHXWscnj4Ir6Bj+5EBQl1jrfI4m5oAW3ZbVLSdyTOXYUd0XvG0MZna6soi2Lnxl6817dw6Hw+bBy4i2thxBcPoGYkVMwvGkkb5BGGIY3jfkbpOHHsOSY2LDgQbpUWtrZZ92EwIMboqvH3w0HbYflfS6R7VZcpx9CebE4urM9MRYjXvgr9SHPF/8LeXVWzi80OAMMXdr23lDBbXez8O7Oxuzzd4G8pgtj7OVZ2IGTeCUZL/Dc1Shf51nfMZAFoIWp6caAELyqBzwa7SMZ5L8cpL/0Z3+L56y9IaLupnCrIjwj4s3mpeO8XX1Kayy3n11vVuv+4aziHw==);whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;POWER SUPPLY 5V" vertex="1">
           <mxGeometry height="90" width="92" x="50" y="90" as="geometry" />
         </mxCell>
@@ -464,7 +481,30 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="-57AGY_NIGQAZNsNdCAg-70" edge="1" parent="1" source="-57AGY_NIGQAZNsNdCAg-60" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=light-dark(#000000,#FF0000);strokeWidth=2;" target="-57AGY_NIGQAZNsNdCAg-69" value="">
-          <mxGeometry relative="1" as="geometry" />
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="730" y="620" />
+              <mxPoint x="730" y="620" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-57AGY_NIGQAZNsNdCAg-76" connectable="0" parent="-57AGY_NIGQAZNsNdCAg-70" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="VCC" vertex="1">
+          <mxGeometry relative="1" x="0.2403" y="-2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-57AGY_NIGQAZNsNdCAg-74" edge="1" parent="1" source="-57AGY_NIGQAZNsNdCAg-60" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;" target="-57AGY_NIGQAZNsNdCAg-69">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="770" y="600" />
+              <mxPoint x="770" y="600" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-57AGY_NIGQAZNsNdCAg-77" connectable="0" parent="-57AGY_NIGQAZNsNdCAg-74" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="GND" vertex="1">
+          <mxGeometry relative="1" x="0.2403" y="-4" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="-57AGY_NIGQAZNsNdCAg-60" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.iot_thing_humidity_sensor;" value="HUMIDIFICADOR 01" vertex="1">
           <mxGeometry height="78" width="78" x="712" y="480" as="geometry" />
